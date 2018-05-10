@@ -22,7 +22,27 @@
 
             <div class="product-info">
                 <h1>{{ product }}</h1>
-                <a :href="link" _target="blank">Click Here!</a>
+                <p v-if="inventory > 10">In Stock</p>
+                <p v-else-if="inventory < 10 && inventory > 0">Almost Gone!</p>
+                <p v-else>Out of Stock</p>
+                <span v-if="onSale">On Sale!</span>
+                <br>
+                <!-- <a :href="link" :alt="description">Click Here!</a> -->
+                <h3>Details</h3>
+                <ul>
+                    <li v-for="detail in details">{{detail}}</li>
+                </ul>
+                <!-- display variants -->
+                <h3>Colors</h3>
+                <div v-for="variant in variants" :key="variant.variantId">
+
+                    <p>{{variant.variantColor}}</p>
+                </div>
+
+                <h3>Sizes</h3>
+                <ul>
+                    <li v-for="size in sizes">{{size}}</li>
+                </ul>
             </div>
 
         </div>
